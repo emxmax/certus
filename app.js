@@ -16,6 +16,9 @@ const swaggerOptions = {
         servers: [
             {
                 url: 'http://localhost:4000'
+            },
+            {
+                url: 'https://certus-production.up.railway.app/'
             }
         ]
     },
@@ -24,6 +27,7 @@ const swaggerOptions = {
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
