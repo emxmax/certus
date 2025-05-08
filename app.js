@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -31,7 +32,7 @@ app.use(cors());
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-const MONGO_URI = 'mongodb+srv://myAtlasDBUser:lolos12345@myatlasclusteredu.xjpb3uv.mongodb.net/certus?retryWrites=true&w=majority&appName=myAtlasClusterEDU';
+const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI).then(()=>{
     console.log('Se conecto exitosamente');
